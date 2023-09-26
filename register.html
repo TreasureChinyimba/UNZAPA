@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Participation Category</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background-color: #f4f4f4;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+    .register-btn {
+      display: block;
+      margin: 30px auto;
+      padding: 12px 30px;
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 500px;
+      position: relative;
+    }
+    .modal-content input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+    }
+    .close {
+      position: absolute;
+      top: 10px; right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .submit-btn {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 5px;
+      width: 100%;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Participation Category Includes:</h2>
+  <ul>
+    <li>Meals</li>
+    <li>Local Transport</li>
+    <li>Event Access</li>
+    <li>Legacy Tour</li>
+    <li>Official Merchandise</li>
+    <li>Delegate Kit</li>
+    <li>Certificate of Participation</li>
+    <li>Speaking Opportunities</li>
+    <li>Direct Confirmation</li>
+  </ul>
+  <button class="register-btn" id="openModal">Register Now</button>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="registerModal">
+  <div class="modal-content">
+    <span class="close" id="closeModal">&times;</span>
+    <h3>Register for Participation</h3>
+    <form id="registrationForm">
+      <input type="text" placeholder="First Name" name="firstName" required />
+      <input type="text" placeholder="Last Name" name="lastName" required />
+      <input type="tel" placeholder="Phone Number" name="phone" required />
+      <input type="email" placeholder="Email" name="email" required />
+      <select name="gender" required>
+        <option value="">Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+      <input type="file" name="photo" accept="image/*" required />
+      <button type="submit" class="submit-btn">Pay with Airtel Money</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById('registerModal');
+  const openBtn = document.getElementById('openModal');
+  const closeBtn = document.getElementById('closeModal');
+
+  openBtn.onclick = () => modal.style.display = 'flex';
+  closeBtn.onclick = () => modal.style.display = 'none';
+  window.onclick = e => { if (e.target === modal) modal.style.display = 'none'; }
+
+  document.getElementById('registrationForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    const data = {
+      firstName: formData.get('firstName'),
+      lastName: formData.get('lastName'),
+      phone: formData.get('phone'),
+      email: formData.get('email'),
+      gender: formData.get('gender')
+    };
+
+    alert("Simulating Airtel Money Payment...");
+
+    // Simulate API call to backend for Airtel Money
+    try {
+      // Replace with your server endpoint that handles Airtel Money
+      const response = await fetch('https://your-backend-endpoint.com/pay/airtelmoney', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        alert("Payment initiated successfully! Confirmation sent.");
+        modal.style.display = 'none';
+      } else {
+        alert("Payment failed. Try again.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Error initiating payment.");
+    }
+  });
+</script>
+
+</body>
+</html>
