@@ -34,12 +34,16 @@
       display: block;
       margin: 30px auto;
       padding: 15px 35px;
-      background-color: #e91e63;
+      background-color: rgb(109, 49, 0);
       color: white;
       border: none;
       border-radius: 5px;
       cursor: pointer;
       font-size: 18px;
+    }
+
+    .register-btn:hover {
+      background-color: rgb(148, 67, 0);
     }
 
     .modal {
@@ -79,7 +83,7 @@
     }
 
     .submit-btn {
-      background-color: #4caf50;
+      background-color: rgb(109, 49, 0);
       color: white;
       border: none;
       padding: 14px;
@@ -88,12 +92,17 @@
       width: 100%;
       cursor: pointer;
     }
+
+        .submit-btn:hover {
+      background-color: rgb(148, 67, 0);
+    }
   </style>
 </head>
 <body>
 
 <div class="container">
   <h2>Participation Category Includes:</h2>
+  <p>With a fee of k500 the following are provided.</p>
   <ul>
     <li>Meals</li>
     <li>Local Transport</li>
@@ -105,6 +114,7 @@
     <li>Speaking Opportunities</li>
     <li>Direct Confirmation</li>
   </ul>
+  <p>send the money using airtel on 0772150004.</p>
   <button class="register-btn" id="openModal">Register Now</button>
 </div>
 
@@ -155,9 +165,7 @@
     // Slight delay to allow form submission before redirecting
     setTimeout(() => {
       // Airtel Money USSD trigger (works only on mobile)
-      const airtelNumber = "0772150004";
-      const amount = 100; // You can make this dynamic
-      const ussd = `tel:*115*1*1*${airtelNumber}*${amount}#`;
+      const ussd = `tel:*115#`;
 
       // Try to open dialer with USSD
       window.location.href = ussd;
