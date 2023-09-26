@@ -1008,9 +1008,11 @@ footer .copyright-text {
 /* Added styles */
 
 .program-highlight {
-  background-color: #ffa400;
+  background-color: white;
+  box-shadow: rgb(82, 82, 82) 10px 10px 10px;
   padding: 20%;
   border-radius: 5%;
+  margin: 3%;
 }
 
 .program-highlight p{
